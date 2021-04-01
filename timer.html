@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Gravity Yoga Timer</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="timer.css">
+    <link href="all.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <h1>Gravity Yoga Timer</h1>
+    <div class="counter-body">
+        <div id="main-box">
+            <div id="main-counter">
+                <h3 id="poseNumber">Pose #1</h3>
+                <p id="poseCounter">05 : 00</p>
+                <div class="final">
+                    <p>Congratulations, you're done.</p>
+                    <p>When you're ready to restart, press the button.</p>
+                </div>
+                <div class="play-buttons">
+                    <button id="pause"><i class="fa fa-4x fa-pause-circle"></i></button>
+                    <button id="start"><i class="fa fa-4x fa-play-circle"></i></button>
+                    <button id="resume"><i class="fa fa-4x fa-play-circle"></i></button>
+                    <button id="stop"><i class="fa fa-4x fa-stop-circle"></i></button>
+                </div>
+            </div>
+
+            <div class="tips">
+                <h3 id="tip-title">Tips for Practice:</h3>
+                <p id="tip-text">Hold for 2-5 minutes per pose/side. <br>
+                    Relax completely. <br>
+                    Breath in 1-2-3-4 (nose) <br>
+                    Breath out 8-7-6-5-4-3-2-1 (mouth)
+                </p>
+            </div>
+        </div>
+
+        <div class="other-counters">
+            <div class="counter">
+                <p>No. of Poses</p>
+                <p id="Poses">03</p>
+                <div>
+                    <button id="decreasePoses">-</button>
+                    <button id="increasePoses">+</button>
+                </div>
+            </div>
+
+            <div class="counter">
+                <p>Stretch Time</p>
+                <p id="Hold">02:00</p>
+                <div>
+                    <button id="decreaseHold" disabled="true">-</button>
+                    <button id="increaseHold">+</button>
+                </div>
+            </div>
+
+            <div class="counter">
+                <p>Rest Between Poses</p>
+                <p id="Rest">00:00</p>
+                <div>
+                    <button id="decreaseRest" disabled="true">-</button>
+                    <button id="increaseRest">+</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="timer.js" async defer></script>
+</body>
+
+</html>

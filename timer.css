@@ -1,0 +1,266 @@
+* 
+{
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    font-weight: bold;
+    font-size: 45px;
+    text-align: center;
+    color: #333333;
+}
+
+.counter-body {
+    display: flex;
+    justify-content: space-between;
+    height: 611px;
+    width: 1000px;
+}
+
+#resume {
+    display: none;
+}
+
+#main-box, .other-counters {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#main-counter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 598px;
+    height: 402px;
+    background-color: #F3F3F3;
+    border-radius: 20px;
+}
+
+.final {
+    display: none;
+    flex-direction: column;
+    text-align: center;
+}
+
+.final p:nth-child(1) {
+    font-size: 31px;
+    margin-bottom: 0;
+}
+
+.final p {
+    font-size: 18px;
+    line-height: 28px;
+    color: #333333;
+}
+
+
+#poseCounter {
+    font-size: 100px;
+    margin: 0;
+}
+
+#main-counter #poseNumber {
+    font-size: 35px;
+    margin: 0;
+}
+
+.play-buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 35%;
+}
+
+.play-buttons button {
+    border: none;
+    background-color: transparent;
+}
+
+.play-buttons :focus {
+    outline: 0;
+}
+
+ .main-buttons {
+    text-transform: uppercase;
+    width: 132px;
+    height: 60px;
+    background-color: #8C8C8C;
+    border-radius: 10px;
+    border: none;
+    letter-spacing: 2px;
+    font-weight: bold;
+    font-size: 20px;
+    color: #FFFFFF;
+    transition: 0.3s;
+}
+
+.tips {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 596px;
+    height: 189px;
+    background-color: #F3F3F3;
+    border-radius: 20px;
+}
+
+i {
+    color: #8C8C8C;
+}
+
+i:hover {
+    color: #575757;
+}
+
+.tips h3 {
+    width: 141px;
+    font-weight: normal;
+    font-size: 35px;
+}
+
+.tips p {
+    width: 298px;
+    font-size: 18px;
+    line-height: 28px;
+    color: #333333;
+}
+
+#tip-text, #tip-title {
+    margin: 0;
+}
+
+.counter {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: #F3F3F3;
+    border-radius: 20px;
+    width: 384px;
+    height: 189px;
+}
+
+.counter button {
+    width: 39px;
+    height: 39px;
+    background-color: #8C8C8C;
+    border-radius: 5px;
+    border: none;
+    font-size: 30px;
+    color: #FFFFFF;
+    padding:0;
+    transition: 0.3s;
+}
+
+.main-buttons:focus, .counter button:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(105, 105, 105, 0.425);
+}
+
+.counter button:disabled {
+    background-color: #EBEBEB;
+}
+
+.counter p:nth-child(1) {
+    height: 29px;
+    font-size: 18px;
+    margin: 0;
+    color: #333333;
+}
+
+.counter p:nth-child(2) {
+    font-weight: bold;
+    font-size: 35px;
+    color: #333333;
+    margin: 0;
+}
+
+@media (max-width: 700px) {
+
+    h1 {
+        font-size: 35px;
+    }
+
+    #main-box {
+        order: 2;
+    }
+
+    .counter-body {
+        flex-direction: column;
+        width: 341px;
+        justify-content: flex-start;
+    }
+
+    #main-counter {
+        width: inherit;
+        height: 35vh;
+    }
+
+    .tips {
+        width: inherit;
+        height: 178px;
+        margin-top: 10px;
+        padding: 20px 0;
+        flex-direction: column;
+    }
+
+    .tips h3 {
+        width: 80%;
+        font-size: 30px;
+    }
+
+    .tips p {
+        width: 80%;
+        font-size: 16px;
+        line-height: 26px;
+    }
+
+    .other-counters {
+        flex-direction: row;
+        margin-bottom: 10px;
+    }
+
+    .counter {
+        width: 108px;
+        height: 180px;
+        border-radius: 10px;
+    }
+
+    .counter p:nth-child(1) {
+        text-align: center;
+        font-size: 16px;
+    }
+
+    .counter p:nth-child(2) {
+        font-size: 30px;
+    }
+
+    .counter button {
+        width: 40px;
+        height: 40px;
+        border-radius: 5px;
+        font-size: 23px;
+    }
+
+    #poseCounter {
+        font-size: 80px;
+    }
+
+    .play-buttons {
+        width: 60%;
+    }
+
+    #main-counter #poseNumber {
+        font-size: 25px;
+    }
+
+  }
