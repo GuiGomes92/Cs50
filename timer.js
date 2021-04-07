@@ -1,19 +1,16 @@
+// Initial Settings
 let holdDate = new Date();
 let restDate = new Date();
 let pauseDate = new Date();
-
 holdDate.setMinutes(0);
 holdDate.setSeconds(120);
 restDate.setMinutes(0);
 restDate.setSeconds(0);
-
 let numberPoses = 3;
 let secondsHold = 0;
 let secondsRest = 0;
-
 let secondsPassed = -1;
 poseCount = 1;
-
 let time = 10;
 
 // Audios to plat between minutes
@@ -23,18 +20,26 @@ let threeMin = new Audio('Gong3.mp3');
 let fourMin = new Audio('Gong4.mp3');
 let fiveMin = new Audio('gong5.mp3');
 
+// Timer variables
 let timerAction;
 let timerStop;
 
-// Buttons Settings
-document.querySelector('#increasePoses').addEventListener('click', () => {
+// Settings buttons
+const increasePoses = document.querySelector('#increasePoses')
+const decreasePoses = document.querySelector('#decreasePoses')
+const increaseHold = document.querySelector('#increaseHold')
+const decreaseHold = document.querySelector('#decreaseHold')
+const increaseRest = document.querySelector('#increaseRest')
+const decreaseRest = document.querySelector('#decreaseRest')
+
+increasePoses.addEventListener('click', () => {
     numberPoses++
     if (numberPoses >= 2) {
         document.querySelector('#decreasePoses').disabled = false;
     }
     document.querySelector('#Poses').innerHTML = numberPoses.toString(10).padStart(2, '0');
 });
-document.querySelector('#decreasePoses').addEventListener('click', () => {
+decreasePoses.addEventListener('click', () => {
 
     if (numberPoses <= 2) {
         document.querySelector('#decreasePoses').disabled = true;
@@ -46,7 +51,7 @@ document.querySelector('#decreasePoses').addEventListener('click', () => {
     }
     document.querySelector('#Poses').innerHTML = numberPoses.toString(10).padStart(2, '0');
 });
-document.querySelector('#increaseHold').addEventListener('click', () => {
+increaseHold.addEventListener('click', () => {
     holdDate.setSeconds(holdDate.getSeconds() + 60)
     if (holdDate.getMinutes() > 1) {
         document.querySelector('#decreaseHold').disabled = false;
@@ -57,7 +62,7 @@ document.querySelector('#increaseHold').addEventListener('click', () => {
     }
     document.querySelector('#Hold').innerHTML = holdDate.getMinutes().toString(10).padStart(2, '0') + ":" + holdDate.getSeconds().toString(10).padStart(2, '0')
 });
-document.querySelector('#decreaseHold').addEventListener('click', () => {
+decreaseHold.addEventListener('click', () => {
     holdDate.setSeconds(holdDate.getSeconds() - 60)
     if (holdDate.getMinutes() <= 1) {
         document.querySelector('#decreaseHold').disabled = true;
@@ -70,14 +75,14 @@ document.querySelector('#decreaseHold').addEventListener('click', () => {
 
     document.querySelector('#Hold').innerHTML = holdDate.getMinutes().toString(10).padStart(2, '0') + ":" + holdDate.getSeconds().toString(10).padStart(2, '0');
 });
-document.querySelector('#increaseRest').addEventListener('click', () => {
+increaseRest.addEventListener('click', () => {
     restDate.setSeconds(restDate.getSeconds() + 1)
     if (restDate.getSeconds() > 0) {
         document.querySelector('#decreaseRest').disabled = false;
     }
     document.querySelector('#Rest').innerHTML = restDate.getMinutes().toString(10).padStart(2, '0') + ":" + restDate.getSeconds().toString(10).padStart(2, '0');
 });
-document.querySelector('#decreaseRest').addEventListener('click', () => {
+decreaseRest.addEventListener('click', () => {
     restDate.setSeconds(restDate.getSeconds() - 1);
 
     if (restDate.getMinutes() === 0 && restDate.getSeconds() === 0) {
@@ -88,7 +93,24 @@ document.querySelector('#decreaseRest').addEventListener('click', () => {
     document.querySelector('#Rest').innerHTML = restDate.getMinutes().toString(10).padStart(2, '0') + ":" + restDate.getSeconds().toString(10).padStart(2, '0');
 });
 
-document.querySelector('#stop').addEventListener('click', () => {
+// Playable Buttons
+const start = document.querySelector('#start')
+const stop = document.querySelector('#stop')
+const pause = document.querySelector('#pause')
+const resume = document.querySelector('#resume')
+
+// Start Timer
+start.addEventListener('click', () => {
+    document.querySelector('.final').style.display = "none";
+    start.style.display = "none";
+    resume.style.display = "flex";
+    resume.disabled = true;
+    document.querySelector('#poseNumber').style.display = "flex";
+    getReady();
+})
+
+// Stop Timer
+stop.addEventListener('click', () => {
     time = 10
     console.log(time)
     poseCount = 1;
@@ -97,20 +119,11 @@ document.querySelector('#stop').addEventListener('click', () => {
     getReady();
 })
 
-// Start Timer
-document.querySelector('#start').addEventListener('click', () => {
-    document.querySelector('.final').style.display = "none";
-    document.querySelector('#start').style.display = "none";
-    document.querySelector('#resume').style.display = "flex";
-    document.querySelector('#resume').disabled = true;
-    document.querySelector('#poseNumber').style.display = "flex";
-    getReady();
-})
-
+// Preparation time
 function getReady() {
     document.querySelector('#poseNumber').innerHTML = "Get Ready";
     document.querySelector('#poseCounter').style.display = "flex";
-    document.querySelector('#stop').disabled = true;
+    stop.disabled = true;
 
     let preparation = setInterval(() => {
         document.querySelector('#poseCounter').innerHTML = time;
@@ -128,8 +141,8 @@ function provideInfo() {
     if (poseCount > numberPoses) {
         document.querySelector('#poseNumber').style.display = "none";
         document.querySelector('#poseCounter').style.display = "none";
-        document.querySelector('#start').style.display = "flex";
-        document.querySelector('#resume').style.display = "none";
+        start.style.display = "flex";
+        resume.style.display = "none";
         document.querySelector('.final').style.display = "flex";
         clearTimeout();
         poseCount = 1
@@ -143,7 +156,7 @@ function provideInfo() {
 }
 
 function startTimer(duration, display) {
-    document.querySelector('#stop').disabled = false;
+    stop.disabled = false;
     let timer = duration, minutes, seconds;
     timerAction = setInterval(function () {
 
@@ -181,8 +194,8 @@ function startTimer(duration, display) {
     }, (duration * 1000) + 1000);
 
 
-    document.querySelector('#pause').addEventListener('click', () => {
-        document.querySelector('#resume').disabled = false;
+    pause.addEventListener('click', () => {
+        resume.disabled = false;
         clearInterval(timerAction);
         clearTimeout(timerStop);
         pauseDate.setMinutes(minutes)
@@ -190,9 +203,9 @@ function startTimer(duration, display) {
     })
 }
 
-document.querySelector('#resume').addEventListener('click', () => {
+resume.addEventListener('click', () => {
     secondsPassed--;
-    document.querySelector('#resume').disabled = true;
+    resume.disabled = true;
     let duration = (pauseDate.getMinutes() * 60) + pauseDate.getSeconds()
     let display = document.querySelector('#poseCounter');
     startTimer(duration, display);
