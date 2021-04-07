@@ -23,6 +23,9 @@ let threeMin = new Audio('Gong3.mp3');
 let fourMin = new Audio('Gong4.mp3');
 let fiveMin = new Audio('gong5.mp3');
 
+let timerAction;
+let timerStop;
+
 // Buttons Settings
 document.querySelector('#increasePoses').addEventListener('click', () => {
     numberPoses++
@@ -85,6 +88,15 @@ document.querySelector('#decreaseRest').addEventListener('click', () => {
     document.querySelector('#Rest').innerHTML = restDate.getMinutes().toString(10).padStart(2, '0') + ":" + restDate.getSeconds().toString(10).padStart(2, '0');
 });
 
+document.querySelector('#stop').addEventListener('click', () => {
+    time = 10
+    console.log(time)
+    poseCount = 1;
+    clearInterval(timerAction);
+    clearTimeout(timerStop);
+    getReady();
+})
+
 // Start Timer
 document.querySelector('#start').addEventListener('click', () => {
     document.querySelector('.final').style.display = "none";
@@ -98,6 +110,7 @@ document.querySelector('#start').addEventListener('click', () => {
 function getReady() {
     document.querySelector('#poseNumber').innerHTML = "Get Ready";
     document.querySelector('#poseCounter').style.display = "flex";
+    document.querySelector('#stop').disabled = true;
 
     let preparation = setInterval(() => {
         document.querySelector('#poseCounter').innerHTML = time;
@@ -130,8 +143,9 @@ function provideInfo() {
 }
 
 function startTimer(duration, display) {
+    document.querySelector('#stop').disabled = false;
     let timer = duration, minutes, seconds;
-    let timerAction = setInterval(function () {
+    timerAction = setInterval(function () {
 
         minutes = parseInt(timer / 60, 10);
         seconds = parseInt(timer % 60, 10);
@@ -161,18 +175,11 @@ function startTimer(duration, display) {
 
     }, 1000);
 
-    let timerStop = setTimeout(() => {
+    timerStop = setTimeout(() => {
         clearInterval(timerAction);
         rest();
     }, (duration * 1000) + 1000);
 
-    document.querySelector('#stop').addEventListener('click', () => {
-        time = 10
-        poseCount = 1;
-        clearInterval(timerAction);
-        clearTimeout(timerStop);
-        getReady();
-    })
 
     document.querySelector('#pause').addEventListener('click', () => {
         document.querySelector('#resume').disabled = false;
