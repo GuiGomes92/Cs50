@@ -86,7 +86,6 @@ decreaseRest.addEventListener('click', () => {
     restDate.setSeconds(restDate.getSeconds() - 1);
 
     if (restDate.getMinutes() === 0 && restDate.getSeconds() === 0) {
-        console.log(restDate.getSeconds())
         document.querySelector('#decreaseRest').disabled = true;
     }
 
@@ -112,7 +111,6 @@ start.addEventListener('click', () => {
 // Stop Timer
 stop.addEventListener('click', () => {
     time = 10
-    console.log(time)
     poseCount = 1;
     clearInterval(timerAction);
     clearTimeout(timerStop);
@@ -128,7 +126,6 @@ function getReady() {
     let preparation = setInterval(() => {
         document.querySelector('#poseCounter').innerHTML = time;
         --time;
-        console.log(time)
     }, 1000);
 
     setTimeout(() => {
