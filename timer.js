@@ -122,6 +122,7 @@ function getReady() {
     document.querySelector('#poseNumber').innerHTML = "Get Ready";
     document.querySelector('#poseCounter').style.display = "flex";
     stop.disabled = true;
+    start.disabled = true;
 
     let preparation = setInterval(() => {
         document.querySelector('#poseCounter').innerHTML = time;
@@ -153,6 +154,7 @@ function provideInfo() {
 }
 
 function startTimer(duration, display) {
+    start.disabled = false;
     stop.disabled = false;
     let timer = duration, minutes, seconds;
     timerAction = setInterval(function () {
