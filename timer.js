@@ -100,7 +100,6 @@ const resume = document.querySelector('#resume')
 
 // Start Timer
 start.addEventListener('click', () => {
-    console.log('Start Button')
     document.querySelector('.final').style.display = "none";
     start.style.display = "none";
     resume.style.display = "flex";
@@ -111,7 +110,6 @@ start.addEventListener('click', () => {
 
 // Stop Timer
 stop.addEventListener('click', () => {
-    console.log('Stop Button')
     time = 10
     poseCount = 1;
     clearInterval(timerAction);
@@ -198,7 +196,6 @@ function startTimer(duration, display) {
     }, (duration * 1000) + 1000);
 
     pause.addEventListener('click', () => {
-        console.log('Pause Button')
         resume.disabled = false;
         clearInterval(timerAction);
         clearTimeout(timerStop);
@@ -208,7 +205,6 @@ function startTimer(duration, display) {
 }
 
 resume.addEventListener('click', () => {
-    console.log('Resume Button')
     secondsPassed--;
     resume.disabled = true;
     let duration = (pauseDate.getMinutes() * 60) + pauseDate.getSeconds()
