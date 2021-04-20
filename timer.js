@@ -100,6 +100,7 @@ const resume = document.querySelector('#resume')
 
 // Start Timer
 start.addEventListener('click', () => {
+    console.log('Start Button')
     document.querySelector('.final').style.display = "none";
     start.style.display = "none";
     resume.style.display = "flex";
@@ -110,6 +111,7 @@ start.addEventListener('click', () => {
 
 // Stop Timer
 stop.addEventListener('click', () => {
+    console.log('Stop Button')
     time = 10
     poseCount = 1;
     clearInterval(timerAction);
@@ -123,6 +125,7 @@ function getReady() {
     document.querySelector('#poseCounter').style.display = "flex";
     stop.disabled = true;
     start.disabled = true;
+    pause.disabled = true;
 
     let preparation = setInterval(() => {
         document.querySelector('#poseCounter').innerHTML = time;
@@ -154,8 +157,10 @@ function provideInfo() {
 }
 
 function startTimer(duration, display) {
+    pause.disabled = false;
     start.disabled = false;
     stop.disabled = false;
+    resume.disabled = true;
     let timer = duration, minutes, seconds;
     timerAction = setInterval(function () {
 
@@ -192,8 +197,8 @@ function startTimer(duration, display) {
         rest();
     }, (duration * 1000) + 1000);
 
-
     pause.addEventListener('click', () => {
+        console.log('Pause Button')
         resume.disabled = false;
         clearInterval(timerAction);
         clearTimeout(timerStop);
@@ -203,6 +208,7 @@ function startTimer(duration, display) {
 }
 
 resume.addEventListener('click', () => {
+    console.log('Resume Button')
     secondsPassed--;
     resume.disabled = true;
     let duration = (pauseDate.getMinutes() * 60) + pauseDate.getSeconds()
